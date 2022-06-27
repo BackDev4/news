@@ -5,6 +5,8 @@ namespace App;
 abstract class Model
 {
 
+
+
     public const TABLE = '';
 
     public $id;
@@ -12,8 +14,9 @@ abstract class Model
     public static function findAll()
     {
         $db = new Db();
-        $sql = `SELECT * FROM ` . static::TABLE ;
+        $sql = sprintf("SELECT * FROM %s", static::TABLE);
         return $db->query($sql, [], static::class);
+
     }
 
 }

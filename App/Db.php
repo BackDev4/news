@@ -16,23 +16,23 @@ class Db
             );
     }
 
-    public function query($sql, $data, $class)
+    public function query($sql, $class)
     {
         $sth = $this->connect->prepare($sql);
-        $sth->execute($data);
-        $data = $sth->fetchAll();
-        $ret = [];
-        foreach ($data as $row) {
-            $item = new $class;
-            foreach ($row as $key => $val) {
-                $item->$key = $val;
-                if (is_numeric($key)) {
-                    continue;
-                }
-                $item->$key = $val;
-            }
-            $ret[] = $item;
-        }
-        return $ret;
+        $sth->execute(array());
+        return $sth->fetchAll();
+//        $ret = [];
+//        foreach ($data as $row) {
+//            $item = new $class;
+//            foreach ($row as $key => $val) {
+//                $item->$key = $val;
+//                if (is_numeric($key)) {
+//                    continue;
+//                }
+//                $item->$key = $val;
+//            }
+//            $ret[] = $item;
+//        }
+//        return $ret;
     }
 }

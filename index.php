@@ -2,7 +2,7 @@
 
 require 'autoload.php';
 
-$data = \App\Models\Article::findAll();
+$data = \App\Models\User::findAll();
 
 var_dump($data);
 

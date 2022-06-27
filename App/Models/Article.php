@@ -11,4 +11,5 @@ class Article extends Model
     public static $title;
     public static $content;
 
+
 }
