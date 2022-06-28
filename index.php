@@ -2,8 +2,13 @@
 
 require 'autoload.php';
 
-$data = \App\Models\User::findAll();
+$article = new \App\Models\Article();
 
-var_dump($data);
+$article->title = 'Загаловок новости';
+$article->content = 'Что-то';
+
+$article->insert();
+
+var_dump($article);
 
 
