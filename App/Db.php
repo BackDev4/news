@@ -20,7 +20,18 @@ class Db
     {
         $sth = $this->connect->prepare($sql);
         $sth->execute($data);
-        $data = $sth->fetchAll(\PDO::FETCH_CLASS,$class);
-        return $data;
+        return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
+
+    public function execute($sql, $data = [])
+    {
+        $sth = $this->connect->prepare($sql);
+        return $sth->execute($data);
+    }
+
+    public function getLastId()
+    {
+        return $this->connect->lastInsertId();
+    }
+
 }

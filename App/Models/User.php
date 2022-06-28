@@ -8,7 +8,7 @@ class User extends Model
 {
 
     public const TABLE = 'users';
-    public $email;
-    public $name;
+    protected $email;
+    protected $name;
 
 }
