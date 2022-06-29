@@ -5,7 +5,6 @@ namespace App;
 abstract class Model
 {
 
-
     public const TABLE = '';
 
     public $id;
@@ -16,6 +15,14 @@ abstract class Model
         $sql = sprintf('SELECT * FROM %s', static::TABLE);
         return $db->query($sql, [], static::class);
 
+    }
+
+    public static function findById($id)
+    {
+        $db = new Db();
+        $sql = sprintf('SELECT * FROM %s', static::TABLE . 'WHERE id=:id');
+        $data = $db->query($sql, [':id' => $id], static::class);
+        return $data ? $data[0] : null;
     }
 
     public function insert()
