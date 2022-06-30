@@ -5,6 +5,7 @@ return [
         'host' => 'localhost',
         'dbname' => 'php',
         'user' => 'root',
-        'password' => '',
+        'password' => 'root',
+        'unix' => '/Applications/MAMP/tmp/mysql/mysql.sock'
     ]
 ];

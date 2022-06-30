@@ -17,7 +17,7 @@ class Article extends Controller
     protected function handle()
     {
         $this->view->article = \App\Models\Article::findById($_GET['id']);
-        echo $this->view->render('templates\article.php');
+        echo $this->view->render(__DIR__ . '/../../templates/article.php');
 
     }
 

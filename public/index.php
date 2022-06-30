@@ -14,5 +14,6 @@ try {
 } catch (\App\DbExeption $error) {
     echo 'Ошибка БД:' . $error->getMessage();
 }catch (Exception $error){
+    echo $error->getMessage() . "<br>";
     echo 'Неизвестная ошибка';
 }

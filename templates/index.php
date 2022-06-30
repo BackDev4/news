@@ -14,7 +14,7 @@
 <?php foreach ($this->articles as $article): ?>
     <article>
         <h2>
-            <a href="/controller=Article&id=<?php echo $article->id; ?>">
+            <a href="/?controller=Article&id=<?php echo $article->id; ?>">
                 <?php echo $article->title; ?>
             </a>
 
