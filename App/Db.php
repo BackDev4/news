@@ -19,7 +19,10 @@ class Db
     public function query($sql, $data = [], $class)
     {
         $sth = $this->connect->prepare($sql);
-        $sth->execute($data);
+        $res = $sth->execute($data);
+        if (!$res) {
+            throw new DbExeption('не выполнен запрос');
+        }
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
