@@ -10,7 +10,7 @@ class Db
     public function __construct()
     {
         $config = (include __DIR__ . '/config.php') ['db'];
-        if(!$config['unix']) {
+        if (!$config['unix']) {
             $this->connect =
                 new \PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'],
                     $config['user'], $config['password']
