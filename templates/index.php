@@ -11,14 +11,22 @@
 
 <h1>Новости</h1>
 
-<?php foreach ($this->data['articles'] as $article): ?>
+<?php foreach ($this->articles as $article): ?>
     <article>
-        <h2> <?php echo $article->title; ?></h2>
+        <h2>
+            <a href="/controller=Article&id=<?php echo $article->id; ?>">
+                <?php echo $article->title; ?>
+            </a>
+
+        </h2>
         <p> <?php echo $article->content; ?> </p>
     </article>
 
     <hr>
-<?php endforeach;?>
+<?php endforeach; ?>
+
+
+<?php echo $this->foo; ?>
 
 </body>
 </html>
