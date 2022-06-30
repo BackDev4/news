@@ -10,13 +10,22 @@ class Db
     public function __construct()
     {
         $config = (include __DIR__ . '/config.php') ['db'];
-        $this->connect =
-            new \PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'],
-                $config['user'], $config['password']
+        if (!$config['unix']) {
+            $this->connect =
+                new \PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'],
+                    $config['user'], $config['password']
+                );
+        } else {
+            $this->connect = new \PDO(
+                "mysql:unix_socket={$config['unix']};dbname={$config['dbname']};user={$config['user']};password=${config['password']}"
             );
+        }
     }
 
-    public function query($sql, $data = [], $class)
+    /**
+     * @throws DbExeption
+     */
+    public function query($sql, $data = [], $class = "")
     {
         $sth = $this->connect->prepare($sql);
         $res = $sth->execute($data);
@@ -26,13 +35,13 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
-    public function execute($sql, $data = [])
+    public function execute($sql, $data = []): bool
     {
         $sth = $this->connect->prepare($sql);
         return $sth->execute($data);
     }
 
-    public function getLastId()
+    public function getLastId(): bool|string
     {
         return $this->connect->lastInsertId();
     }
