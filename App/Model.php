@@ -20,9 +20,18 @@ abstract class Model
     public static function findById($id)
     {
         $db = new Db();
-        $sql = sprintf('SELECT * FROM %s', static::TABLE . 'WHERE id=:id');
+        $sql = sprintf('SELECT * FROM %s', static::TABLE . ' WHERE id=:id');
         $data = $db->query($sql, [':id' => $id], static::class);
         return $data ? $data[0] : null;
+    }
+
+    public function delete()
+    {
+        if (isset($_POST["id"]) && !empty($_POST["id"])) {
+            $id = $_POST["id"];
+            $db = new Db();
+            $db->execute("DELETE FROM users WHERE id = '$id'");
+        }
     }
 
     public function insert()

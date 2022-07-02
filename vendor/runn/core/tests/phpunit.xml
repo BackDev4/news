@@ -1,0 +1,29 @@
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/latest/phpunit.xsd"
+        bootstrap="autoload.php"
+>
+
+    <testsuites>
+        <testsuite name="Runn\Core">
+            <directory phpVersionOperator=">=" phpVersion="7.4">Core</directory>
+        </testsuite>
+        <testsuite name="Runn\Di">
+            <directory phpVersionOperator=">=" phpVersion="7.4">Di</directory>
+        </testsuite>
+        <testsuite name="Runn\Reflection">
+            <directory phpVersionOperator=">=" phpVersion="7.4">Reflection</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>../src</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-clover" target="clover.xml"/>
+    </logging>
+
+</phpunit>
